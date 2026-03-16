@@ -139,6 +139,7 @@ const modalOverlay = document.querySelector('.modal-overlay');
 const pedidoForm = document.getElementById('pedidoForm');
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');
+const navOverlay = document.getElementById('navOverlay');
 const header = document.getElementById('header');
 
 // Variável para armazenar o produto atual
@@ -482,6 +483,14 @@ document.querySelectorAll('.btn-promo').forEach(btn => {
 menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     nav.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+});
+
+// Fechar menu ao clicar no overlay
+navOverlay.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    nav.classList.remove('active');
+    navOverlay.classList.remove('active');
 });
 
 // Fechar menu ao clicar em um link
@@ -489,6 +498,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
         nav.classList.remove('active');
+        navOverlay.classList.remove('active');
     });
 });
 
