@@ -1,134 +1,228 @@
 // ========================================
-// BURGER HOUSE - JavaScript
+// SUPER BURGUER - JavaScript
 // ========================================
 
-// Dados dos produtos
+// Dados dos produtos - Cardápio completo
 const produtos = [
-    // Tradicionais
+    // Hambúrgueres
     {
         id: 1,
-        nome: "Classic Burger",
-        descricao: "Pão brioche, hambúrguer 180g, alface, tomate, cebola e molho especial",
-        preco: 29.90,
-        categoria: "tradicionais",
+        nome: "X Bacon Ovo",
+        descricao: "Hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 15.00,
+        categoria: "hamburgueres",
         imagem: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-        badge: null
+        badge: ""
     },
     {
         id: 2,
-        nome: "Cheese Burger",
-        descricao: "Pão brioche, hambúrguer 180g, queijo cheddar, alface, tomate e molho",
-        preco: 32.90,
-        categoria: "tradicionais",
+        nome: "X Bacon",
+        descricao: "Hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 14.00,
+        categoria: "hamburgueres",
         imagem: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&q=80",
-        badge: null
+        badge: ""
     },
     {
         id: 3,
-        nome: "Hambúrguer Simples",
-        descricao: "Pão, hambúrguer 120g, alface, tomate e maionese",
-        preco: 19.90,
-        categoria: "tradicionais",
-        imagem: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80",
-        badge: "Mais econômico"
-    },
-    // Especiais
-    {
-        id: 4,
-        nome: "Mega Burger",
-        descricao: "Pão brioche, 2 hambúrgueres 180g, bacon, queijo, alface, tomate e onion rings",
-        preco: 45.90,
-        categoria: "especiais",
+        nome: "Da Casa Bacon",
+        descricao: "2 hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 20.00,
+        categoria: "hamburgueres",
         imagem: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
         badge: "Mais vendido"
     },
     {
-        id: 5,
-        nome: "Bacon Supreme",
-        descricao: "Pão brioche, hambúrguer 200g, bacon crocante, queijo, onion rings e molho BBQ",
-        preco: 42.90,
-        categoria: "especiais",
+        id: 4,
+        nome: "X Tudo",
+        descricao: "Hambúrguer, 100g de queijo, calabresa, ovo, bacon, maionese, alface e tomate",
+        preco: 18.00,
+        categoria: "hamburgueres",
         imagem: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
-        badge: null
+        badge: "Super completo"
+    },
+    {
+        id: 5,
+        nome: "X Egg",
+        descricao: "Hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 14.00,
+        categoria: "hamburgueres",
+        imagem: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=400&q=80",
+        badge: ""
     },
     {
         id: 6,
-        nome: "Chicken Burger",
-        descricao: "Pão brioche, filé de frango empanado, alface, tomate e maionese temperada",
-        preco: 34.90,
-        categoria: "especiais",
-        imagem: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80",
-        badge: null
+        nome: "X Salada",
+        descricao: "Hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 12.00,
+        categoria: "hamburgueres",
+        imagem: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
+        badge: ""
     },
     {
         id: 7,
-        nome: "Veggie Burger",
-        descricao: "Pão integral, hambúrguer vegetariano, alface, tomate, rúcula e molho de iogurte",
-        preco: 36.90,
-        categoria: "especiais",
-        imagem: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
-        badge: "Vegano"
+        nome: "X Burguer",
+        descricao: "Hambúrguer, 100g de queijo, maionese",
+        preco: 11.00,
+        categoria: "hamburgueres",
+        imagem: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80",
+        badge: "Clássico"
     },
-    // Acompanhamentos
     {
         id: 8,
-        nome: "Batata Frita Média",
-        descricao: "Batata frita crocante temperada com sal e ervas",
-        preco: 15.90,
-        categoria: "acompanhamentos",
-        imagem: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
-        badge: null
+        nome: "X Calabresa",
+        descricao: "Hambúrguer, 100g de queijo, maionese, alface e tomate",
+        preco: 14.00,
+        categoria: "hamburgueres",
+        imagem: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
+        badge: ""
     },
+    
+    // Pastéis
     {
         id: 9,
-        nome: "Batata Rústica",
-        descricao: "Batata rustica com bacon e queijo ralado",
-        preco: 22.90,
-        categoria: "acompanhamentos",
-        imagem: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&q=80",
-        badge: null
+        nome: "Pastelão Calabresa",
+        descricao: "Queijo e calabresa",
+        preco: 14.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
     },
     {
         id: 10,
-        nome: "Onion Rings",
-        descricao: "Anéis de cebola empanados e crocantes",
-        preco: 18.90,
-        categoria: "acompanhamentos",
-        imagem: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
-        badge: null
+        nome: "Pastelão de Carne",
+        descricao: "Queijo e carne",
+        preco: 12.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
     },
-    // Bebidas
     {
         id: 11,
-        nome: "Refrigerante Lata",
-        descricao: "Coca-Cola, Guaraná Antarctica ou Sprite",
-        preco: 7.90,
-        categoria: "bebidas",
-        imagem: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80",
-        badge: null
+        nome: "Pastelão Mixto",
+        descricao: "Queijo e presunto",
+        preco: 11.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
     },
     {
         id: 12,
-        nome: "Milkshake",
-        descricao: "Sabores: chocolate, morango, baunilha ou cookies",
-        preco: 18.90,
-        categoria: "bebidas",
-        imagem: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&q=80",
-        badge: null
+        nome: "Pastelão Egg",
+        descricao: "Queijo, carne e ovo",
+        preco: 13.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
     },
     {
         id: 13,
-        nome: "Suco Natural",
-        descricao: "Sabores: laranja, uva, manga ou abacaxi",
-        preco: 12.90,
+        nome: "Pastelão de Bacon",
+        descricao: "Queijo, carne e bacon",
+        preco: 14.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
+    },
+    {
+        id: 14,
+        nome: "Pastelão Bacon + Ovo",
+        descricao: "Queijo, carne, bacon e ovo",
+        preco: 15.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
+    },
+    {
+        id: 15,
+        nome: "Pastelão Tudo",
+        descricao: "Queijo, carne, bacon, ovo e calabresa",
+        preco: 18.00,
+        categoria: "pasteis",
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+        badge: ""
+    },
+    
+    // Batata
+    {
+        id: 16,
+        nome: "Batata Frita",
+        descricao: "300g de batata frita crocante",
+        preco: 10.00,
+        categoria: "batata",
+        imagem: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
+        badge: ""
+    },
+    
+    // Bebidas
+    {
+        id: 17,
+        nome: "Pepsi 1L",
+        descricao: "Refrigerante Pepsi 1 litro",
+        preco: 7.00,
         categoria: "bebidas",
-        imagem: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
-        badge: null
+        imagem: "./pepsi 1l.webp",
+        badge: ""
+    },
+    {
+        id: 18,
+        nome: "Coca Lata",
+        descricao: "Refrigerante Coca-Cola lata 350ml",
+        preco: 5.00,
+        categoria: "bebidas",
+        imagem: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80",
+        badge: ""
     }
 ];
 
 // Número do WhatsApp
-const WHATSAPP_NUMBER = "5511981928286";
+const WHATSAPP_NUMBER = "558892993633";
+
+// Instagram Posts - Posts reais do Instagram
+const instagramPosts = [
+    {
+        id: 1,
+        link: "https://www.instagram.com/p/DVKB1-_j9yO/",
+        imagem: "https://instagram.com/p/DVKB1-_j9yO/media/?size=l",
+        texto: "🍔 Super Burguer",
+        likes: ""
+    },
+    {
+        id: 2,
+        link: "https://www.instagram.com/p/DVKBiOHD3RR/",
+        imagem: "https://instagram.com/p/DVKBiOHD3RR/media/?size=l",
+        texto: "🔥 Super Burguer",
+        likes: ""
+    },
+    {
+        id: 3,
+        link: "https://www.instagram.com/p/DL8Rmk1PTR_/",
+        imagem: "https://instagram.com/p/DL8Rmk1PTR_/media/?size=l",
+        texto: "🧀 Super Burguer",
+        likes: ""
+    },
+    {
+        id: 4,
+        link: "https://www.instagram.com/p/DKDXGz3vCq9/",
+        imagem: "https://instagram.com/p/DKDXGz3vCq9/media/?size=l",
+        texto: "💪 Super Burguer",
+        likes: ""
+    },
+    {
+        id: 5,
+        link: "https://www.instagram.com/p/DJ-JMtQJvFd/",
+        imagem: "https://instagram.com/p/DJ-JMtQJvFd/media/?size=l",
+        texto: "🥟 Super Burguer",
+        likes: ""
+    },
+    {
+        id: 6,
+        link: "https://www.instagram.com/p/DH1pmYjJoLE/",
+        imagem: "https://instagram.com/p/DH1pmYjJoLE/media/?size=l",
+        texto: "🍟 Super Burguer",
+        likes: ""
+    }
+];
 
 // Elementos DOM
 const productsGrid = document.getElementById('productsGrid');
@@ -195,6 +289,17 @@ function atualizarQuantidade(id, delta) {
     }
 }
 
+function atualizarTotal() {
+    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
+    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
+    const total = getTotalCarrinho() + taxaEntrega;
+    document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    window.taxaEntrega = taxaEntrega;
+    
+    // Mostrar/ocultar campos no formulário de pedido quando aberto
+    window.tipoEntregaCarrinho = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+}
+
 function getTotalCarrinho() {
     return carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
 }
@@ -251,6 +356,7 @@ function abrirCarrinho() {
     const cartModal = document.getElementById('cartModal');
     cartModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    atualizarTotal();
 }
 
 function fecharCarrinho() {
@@ -290,18 +396,38 @@ function finalizarPedidoCarrinho() {
     const modal = document.getElementById('pedidoModal');
     const cartModal = document.getElementById('cartModal');
     
+    // Verificar tipo de entrega
+    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
+    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
+    const tipoEntrega = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    
+    // Configurar campos de endereço no modal
+    const deliveryFields = document.querySelector('.delivery-fields');
+    const enderecoInput = document.getElementById('endereco');
+    
+    if (entregaSelecionada === 'entrega') {
+        deliveryFields.classList.add('show');
+        enderecoInput.setAttribute('required', 'required');
+    } else {
+        deliveryFields.classList.remove('show');
+        enderecoInput.removeAttribute('required');
+    }
+    
     // Montar resumo do pedido
     let resumoItens = carrinho.map(item => `${item.quantidade}x ${item.nome}`).join('\n');
-    let total = getTotalCarrinho();
+    let total = getTotalCarrinho() + taxaEntrega;
+    let taxaTexto = taxaEntrega > 0 ? `\nTaxa de entrega: R$ 1,00` : '';
     
-    document.getElementById('modalProductName').textContent = `${carrinho.length} item(s) no carrinho`;
+    document.getElementById('modalProductName').textContent = `${carrinho.length} item(s) - ${tipoEntrega}`;
     document.getElementById('modalProductPrice').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
     
     // Armazenar dados do carrinho para usar no formulário
     window.carrinhoAtual = {
         itens: carrinho,
         total: total,
-        resumo: resumoItens
+        resumo: resumoItens,
+        tipoEntrega: tipoEntrega,
+        taxaEntrega: taxaEntrega
     };
     
     cartModal.classList.remove('active');
@@ -355,6 +481,40 @@ function renderizarProdutos(categoria = 'todos') {
 }
 
 // ========================================
+// Renderizar Posts do Instagram
+// ========================================
+function renderizarInstagramPosts() {
+    const instagramGrid = document.getElementById('instagramPosts');
+    
+    // Embaralhar array para mostrar posts aleatórios
+    const postsAleatorios = [...instagramPosts].sort(() => Math.random() - 0.5);
+    
+    // Pegar apenas 6 posts aleatórios
+    const postsParaMostrar = postsAleatorios.slice(0, 6);
+    
+    instagramGrid.innerHTML = postsParaMostrar.map((post, index) => {
+        const isReel = post.link.includes('/reel/');
+        return `
+        <a href="${post.link}" target="_blank" class="instagram-post fade-in-up" style="animation-delay: ${index * 0.1}s">
+            <div class="instagram-post-image">
+                <img src="${post.imagem}" alt="Post do Instagram" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80'">
+                ${isReel ? '<span class="reel-icon"><i class="fas fa-play"></i></span>' : ''}
+                <div class="instagram-post-overlay">
+                    <span class="instagram-likes">
+                        <i class="fas fa-heart"></i> ${post.likes || '♥'}
+                    </span>
+                </div>
+            </div>
+        </a>
+    `}).join('');
+}
+
+// Atualizar posts aleatórios a cada 8 segundos
+setInterval(() => {
+    renderizarInstagramPosts();
+}, 8000);
+
+// ========================================
 // Filtro de categorias
 // ========================================
 categoryBtns.forEach(btn => {
@@ -375,6 +535,11 @@ function abrirModalPedido(e) {
     
     document.getElementById('modalProductName').textContent = `Produto: ${produtoAtual.nome}`;
     document.getElementById('modalProductPrice').textContent = `R$ ${parseFloat(produtoAtual.preco).toFixed(2).replace('.', ',')}`;
+    
+    // Resetar opções de entrega
+    document.querySelector('input[name="deliveryModal"]').checked = true;
+    window.taxaEntregaModal = 0;
+    window.tipoEntregaModal = 'RETIRADA';
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -397,9 +562,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ========================================
-// Enviar pedido via WhatsApp
+// Enviar pedido via WhatsApp - Backup click handler
 // ========================================
-pedidoForm.addEventListener('submit', (e) => {
+document.querySelector('#pedidoForm button[type="submit"]').addEventListener('click', function(e) {
     e.preventDefault();
     
     const nome = document.getElementById('nome').value;
@@ -409,11 +574,17 @@ pedidoForm.addEventListener('submit', (e) => {
     const pagamento = document.getElementById('pagamento').value;
     const observacoes = document.getElementById('observacoes').value;
     
+    // Verificar se os campos obrigatórios estão preenchidos
+    if (!nome || !telefone || !endereco || !pagamento) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+    }
+    
     // Verificar se há carrinho
     const temCarrinho = window.carrinhoAtual && window.carrinhoAtual.itens && window.carrinhoAtual.itens.length > 0;
     
     // Montar mensagem
-    let mensagem = `🍔 *NOVO PEDIDO - BURGER HOUSE*\n\n`;
+    let mensagem = `🍔 *NOVO PEDIDO - SUPER BURGUER*\n\n`;
     mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
     
     if (temCarrinho) {
@@ -459,22 +630,98 @@ pedidoForm.addEventListener('submit', (e) => {
     
     // Fechar modal
     fecharModal();
+    alert('Pedido enviado com sucesso!');
 });
 
 // ========================================
-// Botões de promoção
+// Enviar pedido via WhatsApp - Form submit (mantido para compatibilidade)
 // ========================================
-document.querySelectorAll('.btn-promo').forEach(btn => {
-    btn.addEventListener('click', () => {
-        produtoAtual.nome = btn.dataset.product;
-        produtoAtual.preco = btn.dataset.price;
+pedidoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const endereco = document.getElementById('endereco').value;
+    const referencia = document.getElementById('referencia').value;
+    const pagamento = document.getElementById('pagamento').value;
+    const observacoes = document.getElementById('observacoes').value;
+    
+    // Verificar se há carrinho
+    const temCarrinho = window.carrinhoAtual && window.carrinhoAtual.itens && window.carrinhoAtual.itens.length > 0;
+    
+    // Verificar tipo de entrega
+    let tipoEntrega, taxa;
+    if (temCarrinho) {
+        tipoEntrega = window.carrinhoAtual.tipoEntrega || 'RETIRADA';
+        taxa = window.carrinhoAtual.taxaEntrega || 0;
+    } else {
+        tipoEntrega = window.tipoEntregaModal || 'RETIRADA';
+        taxa = window.taxaEntregaModal || 0;
+    }
+    
+    // Montar mensagem
+    let mensagem = `🍔 *NOVO PEDIDO - SUPER BURGUER*\n\n`;
+    mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    if (temCarrinho) {
+        // Pedido do carrinho
+        mensagem += `🛒 *ITENS DO PEDIDO:*\n`;
+        window.carrinhoAtual.itens.forEach(item => {
+            let subtotal = item.preco * item.quantidade;
+            mensagem += `• ${item.quantidade}x ${item.nome} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+        });
         
-        document.getElementById('modalProductName').textContent = `Produto: ${produtoAtual.nome}`;
-        document.getElementById('modalProductPrice').textContent = `R$ ${parseFloat(produtoAtual.preco).toFixed(2).replace('.', ',')}`;
+        mensagem += `\n🚚 *TIPO:* ${tipoEntrega}`;
+        if (taxa > 0) {
+            mensagem += ` (+R$ 1,00)`;
+        }
+        mensagem += `\n💰 *TOTAL:* R$ ${window.carrinhoAtual.total.toFixed(2).replace('.', ',')}\n\n`;
+    } else {
+        // Pedido direto
+        mensagem += `📦 *PRODUTO:* ${produtoAtual.nome}\n`;
+        const precoBase = parseFloat(produtoAtual.preco);
+        const total = precoBase + taxa;
         
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
+        mensagem += `🚚 *TIPO:* ${tipoEntrega}`;
+        if (taxa > 0) {
+            mensagem += ` (+R$ 1,00)`;
+        }
+        mensagem += `\n💰 *VALOR:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
+    }
+    
+    mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    mensagem += `👤 *DADOS DO CLIENTE*\n`;
+    mensagem += `• Nome: ${nome}\n`;
+    mensagem += `• Telefone: ${telefone}\n`;
+    
+    if (tipoEntrega === 'ENTREGA') {
+        mensagem += `• Endereço: ${endereco}\n`;
+        if (referencia) mensagem += `• Referência: ${referencia}\n`;
+    }
+    
+    mensagem += `• Pagamento: ${pagamento}\n`;
+    if (observacoes) mensagem += `• Observações: ${observacoes}\n\n`;
+    mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+    mensagem += `*Aguardando confirmação!*`;
+    
+    // Codificar mensagem para URL
+    const mensagemEncoded = encodeURIComponent(mensagem);
+    
+    // Criar link do WhatsApp
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${mensagemEncoded}`;
+    
+    // Abrir WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Limpar carrinho se foi usado
+    if (temCarrinho) {
+        carrinho = [];
+        window.carrinhoAtual = null;
+        atualizarCarrinhoUI();
+    }
+    
+    // Fechar modal
+    fecharModal();
 });
 
 // ========================================
@@ -493,6 +740,16 @@ navOverlay.addEventListener('click', () => {
     navOverlay.classList.remove('active');
 });
 
+// Fechar menu ao clicar no botão X
+const navClose = document.getElementById('navClose');
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        navOverlay.classList.remove('active');
+    });
+}
+
 // Fechar menu ao clicar em um link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
@@ -506,7 +763,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // Header scroll effect
 // ========================================
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
@@ -514,23 +771,13 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
-// Scroll suave para links internos
+// Carrinho button
 // ========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+document.getElementById('cartBtn').addEventListener('click', abrirCarrinho);
+document.getElementById('cartClose').addEventListener('click', fecharCarrinho);
 
 // ========================================
-// Animação de elementos ao scroll
+// Animação de scroll
 // ========================================
 const observerOptions = {
     threshold: 0.1,
@@ -540,64 +787,121 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-up');
-            observer.unobserve(entry.target);
+            entry.target.classList.add('visible');
         }
     });
 }, observerOptions);
 
-// Observar elementos que precisam de animação
-document.querySelectorAll('.product-card, .promo-card, .info-card').forEach(el => {
+document.querySelectorAll('.fade-in-up').forEach(el => {
     observer.observe(el);
 });
 
 // ========================================
-// Formulário de contato
+// Slideshow Instagram
 // ========================================
-document.getElementById('contatoForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const nome = e.target.nome.value;
-    const email = e.target.email.value;
-    const telefone = e.target.telefone.value;
-    const mensagem = e.target.mensagem.value;
-    
-    let texto = `📧 *MENSAGEM DO SITE*\n\n`;
-    texto += `• Nome: ${nome}\n`;
-    texto += `• E-mail: ${email}\n`;
-    if (telefone) texto += `• Telefone: ${telefone}\n`;
-    texto += `\n📝 *Mensagem:*\n${mensagem}`;
-    
-    const mensagemEncoded = encodeURIComponent(texto);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${mensagemEncoded}`;
-    
-    window.open(whatsappUrl, '_blank');
-    
-    alert('Mensagem enviada com sucesso!');
-    e.target.reset();
-});
+const slideshowImages = [
+    './foto1.png.png'
+];
 
-// ========================================
-// Carrinho - Event Listeners
-// ========================================
-document.getElementById('cartBtn').addEventListener('click', abrirCarrinho);
-document.getElementById('cartClose').addEventListener('click', fecharCarrinho);
-document.querySelector('#cartModal .modal-overlay').addEventListener('click', fecharCarrinho);
+let currentSlide = 0;
 
-// Fechar carrinho com Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const cartModal = document.getElementById('cartModal');
-        if (cartModal.classList.contains('active')) {
-            fecharCarrinho();
-        }
-    }
-});
+function initSlideshow() {
+    const container = document.querySelector('.slideshow-container');
+    if (!container) return;
+    
+    // Adicionar todas as imagens
+    container.innerHTML = slideshowImages.map((src, index) => `
+        <div class="slide ${index === 0 ? 'active' : ''}">
+            <img src="${src}" alt="Super Burguer">
+        </div>
+    `).join('');
+}
+
+function changeSlide() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+    
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+let slideInterval;
+
+// Pausar slideshow ao passar o mouse
+const slideshowContainer = document.querySelector('.slideshow-container');
+if (slideshowContainer) {
+    slideshowContainer.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+    
+    slideshowContainer.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(changeSlide, 5000);
+    });
+}
+
+// Iniciar slideshow
+if (document.querySelector('.slideshow-container')) {
+    initSlideshow();
+    slideInterval = setInterval(changeSlide, 5000);
+}
 
 // ========================================
 // Inicialização
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos();
-    atualizarCarrinhoUI();
+    renderizarInstagramPosts();
+    
+    // Atualizar links do WhatsApp
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(link => {
+        link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    });
+});
+
+// Função global para atualizar quantidade (chamada pelo onclick)
+window.atualizarQuantidade = atualizarQuantidade;
+window.removerDoCarrinho = removerDoCarrinho;
+window.finalizarPedidoCarrinho = finalizarPedidoCarrinho;
+window.atualizarTotal = atualizarTotal;
+
+// ========================================
+// Função atualizar total do modal de pedido
+// ========================================
+window.atualizarTotalModal = function() {
+    const entregaSelecionada = document.querySelector('input[name="deliveryModal"]:checked').value;
+    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
+    const precoBase = parseFloat(produtoAtual.preco);
+    const total = precoBase + taxaEntrega;
+    document.getElementById('modalProductPrice').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    window.taxaEntregaModal = taxaEntrega;
+    window.tipoEntregaModal = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    
+    // Mostrar/ocultar campos de endereço
+    const deliveryFields = document.querySelector('.delivery-fields');
+    const enderecoInput = document.getElementById('endereco');
+    const referenciaInput = document.getElementById('referencia');
+    
+    if (entregaSelecionada === 'entrega') {
+        deliveryFields.classList.add('show');
+        enderecoInput.setAttribute('required', 'required');
+    } else {
+        deliveryFields.classList.remove('show');
+        enderecoInput.removeAttribute('required');
+    }
+};
+
+// ========================================
+// Formulário de Contato - WhatsApp
+// ========================================
+document.getElementById('contatoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nome = this.nome.value;
+    const mensagem = this.mensagem.value;
+    
+    const texto = `Olá! Meu nome é ${nome}. ${mensagem}`;
+    const urlWhatsApp = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
+    
+    window.open(urlWhatsApp, '_blank');
 });
