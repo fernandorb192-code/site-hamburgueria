@@ -132,19 +132,19 @@ img {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .btn-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     transition: all 0.3s;
     position: relative;
 }
@@ -173,14 +173,14 @@ img {
 
 .cart-count {
     position: absolute;
-    top: -6px;
-    right: -6px;
+    top: -5px;
+    right: -5px;
     background: #ff4757;
     color: #fff;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -189,19 +189,29 @@ img {
 
 .menu-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 14px;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+    background: #ff4757;
+    border-color: #ff4757;
 }
 
 .menu-toggle span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
     background: #fff;
-    margin: 6px 0;
+    margin: 5px 0;
     transition: all 0.3s;
+    border-radius: 2px;
 }
 
 .menu-toggle.active span:nth-child(1) {

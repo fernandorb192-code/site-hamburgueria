@@ -533,13 +533,35 @@ function abrirModalPedido(e) {
     produtoAtual.nome = btn.dataset.product;
     produtoAtual.preco = btn.dataset.price;
     
-    document.getElementById('modalProductName').textContent = `Produto: ${produtoAtual.nome}`;
-    document.getElementById('modalProductPrice').textContent = `R$ ${parseFloat(produtoAtual.preco).toFixed(2).replace('.', ',')}`;
+    // Verificar se há escolha de entrega no carrinho
+    let taxa = 0;
+    let tipoEntrega = 'RETIRADA';
     
-    // Resetar opções de entrega
-    document.querySelector('input[name="deliveryModal"]').checked = true;
-    window.taxaEntregaModal = 0;
-    window.tipoEntregaModal = 'RETIRADA';
+    // Se o cliente já abriu o carrinho e escolheu entrega, usar essa escolha
+    if (window.tipoEntregaCarrinho) {
+        tipoEntrega = window.tipoEntregaCarrinho;
+        taxa = window.taxaEntrega || 0;
+    }
+    
+    const total = parseFloat(produtoAtual.preco) + taxa;
+    document.getElementById('modalProductName').textContent = `Produto: ${produtoAtual.nome}`;
+    document.getElementById('modalProductPrice').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    
+    // Configurar campos de endereço baseado na escolha
+    const deliveryFields = document.querySelector('.delivery-fields');
+    const enderecoInput = document.getElementById('endereco');
+    
+    if (tipoEntrega === 'ENTREGA') {
+        deliveryFields.classList.add('show');
+        enderecoInput.setAttribute('required', 'required');
+    } else {
+        deliveryFields.classList.remove('show');
+        enderecoInput.removeAttribute('required');
+    }
+    
+    // Armazenar tipo de entrega para o pedido
+    window.tipoEntregaModal = tipoEntrega;
+    window.taxaEntregaModal = taxa;
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -640,7 +662,6 @@ pedidoForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
     const endereco = document.getElementById('endereco').value;
     const referencia = document.getElementById('referencia').value;
     const pagamento = document.getElementById('pagamento').value;
@@ -692,7 +713,6 @@ pedidoForm.addEventListener('submit', (e) => {
     mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
     mensagem += `👤 *DADOS DO CLIENTE*\n`;
     mensagem += `• Nome: ${nome}\n`;
-    mensagem += `• Telefone: ${telefone}\n`;
     
     if (tipoEntrega === 'ENTREGA') {
         mensagem += `• Endereço: ${endereco}\n`;
@@ -889,6 +909,18 @@ window.atualizarTotalModal = function() {
         deliveryFields.classList.remove('show');
         enderecoInput.removeAttribute('required');
     }
+};
+
+// ========================================
+// Função mostrar campos de entrega (carrinho)
+// ========================================
+window.mostrarCamposEntrega = function() {
+    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
+    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
+    const total = getTotalCarrinho() + taxaEntrega;
+    document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    window.taxaEntrega = taxaEntrega;
+    window.tipoEntregaCarrinho = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
 };
 
 // ========================================

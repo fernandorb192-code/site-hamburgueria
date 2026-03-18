@@ -47,9 +47,6 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-                <a href="https://wa.me/558892993633" class="btn-icon btn-whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
                 <button class="menu-toggle" id="menuToggle">
                     <span></span>
                     <span></span>
@@ -263,30 +260,9 @@
                 <p id="modalProductName">Produto: </p>
                 <p class="modal-price" id="modalProductPrice">R$ </p>
             </div>
-            <div class="modal-delivery-options">
-                <label class="delivery-option">
-                    <input type="radio" name="deliveryModal" value="retirada" checked onchange="atualizarTotalModal()">
-                    <span class="option-content">
-                        <i class="fas fa-store"></i>
-                        <span>Retirada</span>
-                        <span class="free">Grátis</span>
-                    </span>
-                </label>
-                <label class="delivery-option">
-                    <input type="radio" name="deliveryModal" value="entrega" onchange="atualizarTotalModal()">
-                    <span class="option-content">
-                        <i class="fas fa-motorcycle"></i>
-                        <span>Entrega</span>
-                        <span class="fee">+ R$ 1,00</span>
-                    </span>
-                </label>
-            </div>
             <form id="pedidoForm">
                 <div class="form-group">
                     <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-                </div>
-                <div class="form-group" id="telefoneGroup">
-                    <input type="tel" id="telefone" name="telefone" placeholder="(88) 99999-9999" required>
                 </div>
                 <div class="delivery-fields">
                     <div class="form-group">
