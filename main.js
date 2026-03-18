@@ -176,7 +176,7 @@ const produtos = [
 ];
 
 // Número do WhatsApp
-const WHATSAPP_NUMBER = "558892993633";
+const WHATSAPP_NUMBER = "558892993635";
 
 // Instagram Posts - Posts reais do Instagram
 const instagramPosts = [
@@ -290,14 +290,14 @@ function atualizarQuantidade(id, delta) {
 }
 
 function atualizarTotal() {
-    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
-    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
+    const entregaSelecionada = document.querySelector('#cartModal input[name="delivery"]:checked');
+    const taxaEntrega = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 1.00 : 0;
     const total = getTotalCarrinho() + taxaEntrega;
     document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    window.taxaEntrega = taxaEntrega;
     
-    // Mostrar/ocultar campos no formulário de pedido quando aberto
-    window.tipoEntregaCarrinho = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    // Armazenar para uso posterior
+    window.taxaEntrega = taxaEntrega;
+    window.tipoEntregaCarrinho = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
 }
 
 function getTotalCarrinho() {
@@ -349,7 +349,14 @@ function atualizarCarrinhoUI() {
     }
     
     // Atualizar total
-    cartTotal.textContent = `R$ ${getTotalCarrinho().toFixed(2).replace('.', ',')}`;
+    const entregaSelecionada = document.querySelector('#cartModal input[name="delivery"]:checked');
+    const taxaEntrega = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 1.00 : 0;
+    const totalComEntrega = getTotalCarrinho() + taxaEntrega;
+    cartTotal.textContent = `R$ ${totalComEntrega.toFixed(2).replace('.', ',')}`;
+    
+    // Armazenar a taxa de entrega para uso posterior
+    window.taxaEntregaCarrinho = taxaEntrega;
+    window.tipoEntregaCarrinho = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
 }
 
 function abrirCarrinho() {
@@ -396,16 +403,23 @@ function finalizarPedidoCarrinho() {
     const modal = document.getElementById('pedidoModal');
     const cartModal = document.getElementById('cartModal');
     
+    // Ocultar opções de entrega no modal de pedido (já foi escolhido no carrinho)
+    document.getElementById('modalDeliveryOptions').style.display = 'none';
+    
     // Verificar tipo de entrega
-    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
-    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
-    const tipoEntrega = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    const entregaSelecionada = document.querySelector('#cartModal input[name="delivery"]:checked');
+    const taxaEntrega = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 1.00 : 0;
+    const tipoEntrega = entregaSelecionada && entregaSelecionada.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    
+    // Atualizar campos hidden no modal de pedido
+    document.getElementById('tipoEntrega').value = tipoEntrega;
+    document.getElementById('taxaEntrega').value = taxaEntrega;
     
     // Configurar campos de endereço no modal
     const deliveryFields = document.querySelector('.delivery-fields');
     const enderecoInput = document.getElementById('endereco');
     
-    if (entregaSelecionada === 'entrega') {
+    if (entregaSelecionada && entregaSelecionada.value === 'entrega') {
         deliveryFields.classList.add('show');
         enderecoInput.setAttribute('required', 'required');
     } else {
@@ -416,7 +430,6 @@ function finalizarPedidoCarrinho() {
     // Montar resumo do pedido
     let resumoItens = carrinho.map(item => `${item.quantidade}x ${item.nome}`).join('\n');
     let total = getTotalCarrinho() + taxaEntrega;
-    let taxaTexto = taxaEntrega > 0 ? `\nTaxa de entrega: R$ 1,00` : '';
     
     document.getElementById('modalProductName').textContent = `${carrinho.length} item(s) - ${tipoEntrega}`;
     document.getElementById('modalProductPrice').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
@@ -533,15 +546,23 @@ function abrirModalPedido(e) {
     produtoAtual.nome = btn.dataset.product;
     produtoAtual.preco = btn.dataset.price;
     
-    // Verificar se há escolha de entrega no carrinho
+    // Mostrar opções de entrega no modal (para compra direta)
+    document.getElementById('modalDeliveryOptions').style.display = 'flex';
+    
+    // Para compra direta (sem carrinho), usar as opções do modal
     let taxa = 0;
     let tipoEntrega = 'RETIRADA';
     
-    // Se o cliente já abriu o carrinho e escolheu entrega, usar essa escolha
-    if (window.tipoEntregaCarrinho) {
-        tipoEntrega = window.tipoEntregaCarrinho;
-        taxa = window.taxaEntrega || 0;
+    // Verificar as opções de entrega no modal de pedido
+    const deliveryRadio = document.querySelector('#pedidoModal input[name="delivery"]:checked');
+    if (deliveryRadio) {
+        tipoEntrega = deliveryRadio.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+        taxa = deliveryRadio.value === 'entrega' ? 1.00 : 0;
     }
+    
+    // Atualizar campos hidden
+    document.getElementById('tipoEntrega').value = tipoEntrega;
+    document.getElementById('taxaEntrega').value = taxa;
     
     const total = parseFloat(produtoAtual.preco) + taxa;
     document.getElementById('modalProductName').textContent = `Produto: ${produtoAtual.nome}`;
@@ -571,6 +592,8 @@ function fecharModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
     pedidoForm.reset();
+    // Resetar opção de entrega para mostra na próxima vez
+    document.getElementById('modalDeliveryOptions').style.display = 'flex';
 }
 
 modalClose.addEventListener('click', fecharModal);
@@ -590,15 +613,24 @@ document.querySelector('#pedidoForm button[type="submit"]').addEventListener('cl
     e.preventDefault();
     
     const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
     const endereco = document.getElementById('endereco').value;
     const referencia = document.getElementById('referencia').value;
     const pagamento = document.getElementById('pagamento').value;
     const observacoes = document.getElementById('observacoes').value;
     
+    // Verificar tipo de entrega
+    const tipoEntrega = document.getElementById('tipoEntrega').value || 'RETIRADA';
+    const taxaEntrega = parseFloat(document.getElementById('taxaEntrega').value) || 0;
+    
     // Verificar se os campos obrigatórios estão preenchidos
-    if (!nome || !telefone || !endereco || !pagamento) {
+    if (!nome || !pagamento) {
         alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+    }
+    
+    // Se for entrega, endereço é obrigatório
+    if (tipoEntrega === 'ENTREGA' && !endereco) {
+        alert('Por favor, preencha o endereço de entrega!');
         return;
     }
     
@@ -616,18 +648,29 @@ document.querySelector('#pedidoForm button[type="submit"]').addEventListener('cl
             let subtotal = item.preco * item.quantidade;
             mensagem += `• ${item.quantidade}x ${item.nome} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
         });
+        
+        mensagem += `\n🚚 *TIPO:* ${tipoEntrega}`;
+        if (taxaEntrega > 0) {
+            mensagem += ` (+R$ 1,00)`;
+        }
         mensagem += `\n💰 *TOTAL:* R$ ${window.carrinhoAtual.total.toFixed(2).replace('.', ',')}\n\n`;
     } else {
         // Pedido direto
         mensagem += `📦 *PRODUTO:* ${produtoAtual.nome}\n`;
-        mensagem += `💰 *VALOR:* R$ ${parseFloat(produtoAtual.preco).toFixed(2).replace('.', ',')}\n\n`;
+        const precoBase = parseFloat(produtoAtual.preco);
+        const total = precoBase + taxaEntrega;
+        
+        mensagem += `🚚 *TIPO:* ${tipoEntrega}`;
+        if (taxaEntrega > 0) {
+            mensagem += ` (+R$ 1,00)`;
+        }
+        mensagem += `\n💰 *VALOR:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
     }
     
     mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
     mensagem += `👤 *DADOS DO CLIENTE*\n`;
     mensagem += `• Nome: ${nome}\n`;
-    mensagem += `• Telefone: ${telefone}\n`;
-    mensagem += `• Endereço: ${endereco}\n`;
+    if (endereco) mensagem += `• Endereço: ${endereco}\n`;
     if (referencia) mensagem += `• Referência: ${referencia}\n`;
     mensagem += `• Pagamento: ${pagamento}\n`;
     if (observacoes) mensagem += `• Observações: ${observacoes}\n\n`;
@@ -672,8 +715,16 @@ pedidoForm.addEventListener('submit', (e) => {
     
     // Verificar tipo de entrega
     let tipoEntrega, taxa;
-    if (temCarrinho) {
-        tipoEntrega = window.carrinhoAtual.tipoEntrega || 'RETIRADA';
+    
+    // Usar os campos hidden do modal de pedido
+    const tipoEntregaInput = document.getElementById('tipoEntrega');
+    const taxaEntregaInput = document.getElementById('taxaEntrega');
+    
+    if (tipoEntregaInput && taxaEntregaInput) {
+        tipoEntrega = tipoEntregaInput.value || 'RETIRADA';
+        taxa = parseFloat(taxaEntregaInput.value) || 0;
+    } else if (temCarrinho && window.carrinhoAtual.tipoEntrega) {
+        tipoEntrega = window.carrinhoAtual.tipoEntrega;
         taxa = window.carrinhoAtual.taxaEntrega || 0;
     } else {
         tipoEntrega = window.tipoEntregaModal || 'RETIRADA';
@@ -888,39 +939,53 @@ window.atualizarTotal = atualizarTotal;
 // ========================================
 // Função atualizar total do modal de pedido
 // ========================================
-window.atualizarTotalModal = function() {
-    const entregaSelecionada = document.querySelector('input[name="deliveryModal"]:checked').value;
-    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
-    const precoBase = parseFloat(produtoAtual.preco);
-    const total = precoBase + taxaEntrega;
-    document.getElementById('modalProductPrice').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    window.taxaEntregaModal = taxaEntrega;
-    window.tipoEntregaModal = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+// Função mostrar campos de entrega (carrinho)
+// ========================================
+window.mostrarCamposEntrega = function() {
+    const entregaSelecionada = document.querySelector('#cartModal input[name="delivery"]:checked');
+    if (!entregaSelecionada) return;
     
-    // Mostrar/ocultar campos de endereço
+    const taxaEntrega = entregaSelecionada.value === 'entrega' ? 1.00 : 0;
+    const total = getTotalCarrinho() + taxaEntrega;
+    document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    
+    window.taxaEntrega = taxaEntrega;
+    window.tipoEntregaCarrinho = entregaSelecionada.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+};
+
+// ========================================
+// Função mostrar campos de entrega (modal pedido)
+// ========================================
+window.mostrarCamposEntregaModal = function() {
+    const entregaSelecionada = document.querySelector('#pedidoModal input[name="delivery"]:checked');
+    if (!entregaSelecionada) return;
+    
     const deliveryFields = document.querySelector('.delivery-fields');
     const enderecoInput = document.getElementById('endereco');
-    const referenciaInput = document.getElementById('referencia');
     
-    if (entregaSelecionada === 'entrega') {
+    // Atualizar taxa e tipo de entrega
+    const taxaEntrega = entregaSelecionada.value === 'entrega' ? 1.00 : 0;
+    const tipoEntrega = entregaSelecionada.value === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    
+    // Atualizar campos hidden
+    document.getElementById('tipoEntrega').value = tipoEntrega;
+    document.getElementById('taxaEntrega').value = taxaEntrega;
+    
+    // Atualizar o preço exibido no modal
+    const precoBase = parseFloat(produtoAtual.preco) || 0;
+    const total = precoBase + taxaEntrega;
+    document.getElementById('modalProductPrice').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    
+    if (entregaSelecionada.value === 'entrega') {
         deliveryFields.classList.add('show');
         enderecoInput.setAttribute('required', 'required');
     } else {
         deliveryFields.classList.remove('show');
         enderecoInput.removeAttribute('required');
     }
-};
-
-// ========================================
-// Função mostrar campos de entrega (carrinho)
-// ========================================
-window.mostrarCamposEntrega = function() {
-    const entregaSelecionada = document.querySelector('input[name="delivery"]:checked').value;
-    const taxaEntrega = entregaSelecionada === 'entrega' ? 1.00 : 0;
-    const total = getTotalCarrinho() + taxaEntrega;
-    document.getElementById('cartTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    window.taxaEntrega = taxaEntrega;
-    window.tipoEntregaCarrinho = entregaSelecionada === 'entrega' ? 'ENTREGA' : 'RETIRADA';
+    
+    window.tipoEntregaModal = tipoEntrega;
+    window.taxaEntregaModal = taxaEntrega;
 };
 
 // ========================================

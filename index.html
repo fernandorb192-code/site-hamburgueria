@@ -85,7 +85,7 @@
                 
                 <div class="home-btns">
                     <a href="#cardapio" class="btn btn-primary">Ver Cardápio</a>
-                    <a href="https://wa.me/558892993633" class="btn btn-outline" target="_blank">Pedir Agora</a>
+                    <a href="https://wa.me/558892993635" class="btn btn-outline" target="_blank">Pedir Agora</a>
                 </div>
             </div>
             <div class="home-image">
@@ -173,8 +173,8 @@
                         </div>
                         <div>
                             <h4>WhatsApp</h4>
-                            <p>(88) 9 9299-3633</p>
-                            <a href="https://wa.me/558892993633">Enviar mensagem</a>
+                            <p>(88) 9 9299-3635</p>
+                            <a href="https://wa.me/558892993635">Enviar mensagem</a>
                         </div>
                     </div>
                     <div class="contact-card">
@@ -194,7 +194,7 @@
                         <div>
                             <h4>Horário</h4>
                             <p>Segunda a Domingo</p>
-                            <p>18h às 23h</p>
+                            <p>18h às 22h</p>
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@
                     <a href="https://www.instagram.com/superburgueralves/" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://wa.me/558892993633" target="_blank">
+                    <a href="https://wa.me/558892993635" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
@@ -261,6 +261,26 @@
                 <p class="modal-price" id="modalProductPrice">R$ </p>
             </div>
             <form id="pedidoForm">
+                <input type="hidden" id="tipoEntrega" name="tipoEntrega" value="retirada">
+                <input type="hidden" id="taxaEntrega" name="taxaEntrega" value="0">
+                <div id="modalDeliveryOptions" class="modal-delivery-options" style="display: none;">
+                    <label class="delivery-option">
+                        <input type="radio" name="delivery" value="retirada" checked onchange="mostrarCamposEntregaModal()">
+                        <span class="option-content">
+                            <i class="fas fa-store"></i>
+                            <span>Retirada</span>
+                            <span class="free">Grátis</span>
+                        </span>
+                    </label>
+                    <label class="delivery-option">
+                        <input type="radio" name="delivery" value="entrega" onchange="mostrarCamposEntregaModal()">
+                        <span class="option-content">
+                            <i class="fas fa-motorcycle"></i>
+                            <span>Entrega</span>
+                            <span class="fee">+ R$ 1,00</span>
+                        </span>
+                    </label>
+                </div>
                 <div class="form-group">
                     <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
                 </div>
@@ -332,7 +352,7 @@
     </div>
 
     <!-- Float WhatsApp -->
-    <a href="https://wa.me/558892993633" class="float-wa" target="_blank">
+    <a href="https://wa.me/558892993635" class="float-wa" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
