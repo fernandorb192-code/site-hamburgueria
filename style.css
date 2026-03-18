@@ -1928,6 +1928,60 @@ img, video {
     }
 }
 
+@media (max-width: 420px) {
+    .home h1 {
+        font-size: 28px;
+    }
+    
+    .home h2 {
+        font-size: 24px;
+    }
+    
+    .section-header h2 {
+        font-size: 24px;
+    }
+    
+    .home .container {
+        padding: 0 16px;
+    }
+    
+    .products-section,
+    .contact-section,
+    .instagram-section {
+        padding: 50px 16px;
+    }
+    
+    .categories {
+        gap: 8px;
+        padding: 0 16px;
+    }
+    
+    .modal-product-info {
+        padding: 16px;
+    }
+    
+    .modal-product-info h3 {
+        font-size: 18px;
+    }
+    
+    .modal-price {
+        font-size: 22px;
+    }
+    
+    #modalProductName,
+    #modalProductPrice {
+        font-size: 14px;
+    }
+    
+    .float-wa {
+        width: 56px;
+        height: 56px;
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+/* Telas até 480px - Estilos para celulares pequenos */
 @media (max-width: 480px) {
     .home h1 {
         font-size: 32px;
@@ -1989,6 +2043,98 @@ img, video {
     
     .contact-form {
         padding: 24px;
+    }
+    
+    /* Melhorias para celular */
+    .modal-content {
+        width: 95%;
+        max-width: none;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .modal-header h3 {
+        font-size: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 14px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .cart-delivery-options,
+    .modal-delivery-options {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .delivery-option {
+        width: 100%;
+    }
+    
+    .option-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .option-content i {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+    
+    .option-content span:first-of-type {
+        font-size: 14px;
+    }
+    
+    .product-card {
+        padding: 16px;
+    }
+    
+    .product-card h3 {
+        font-size: 16px;
+    }
+    
+    .product-card .price {
+        font-size: 18px;
+    }
+    
+    .cart-item {
+        padding: 12px;
+    }
+    
+    .cart-item-info h4 {
+        font-size: 14px;
+    }
+    
+    .cart-item-actions {
+        gap: 8px;
+    }
+    
+    .cart-qty-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer {
+        padding: 30px 16px;
     }
 }
 
